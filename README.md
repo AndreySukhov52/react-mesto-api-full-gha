@@ -5,12 +5,32 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/AndreySukhov52/react-mesto-api-full-gha.git
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP 158.160.69.25
 
-Frontend https://...
+Frontend https://domainandrey.students.nomoredomains.rocks
 
-Backend https://...
+Backend https://api.domainandrey.students.nomoredomains.rocks
+
+### Стек технологий:
+
+- HTML 5
+- CSS 3
+- JavaScript
+- React
+- API
+- Express
+- MongoDB
+
+### Фукционал:
+
+- регистрация и авторизация пользователей
+- редактирование пользовательских данных (аватара и профиля);
+- добавление новых карточек;
+- удаление пользователем тех карточек, которые добавил именно он;
+- добавление и отмена лайков, счетчик лайков;
+- просмотр увеличенного изображения в попапе;
+- валидация форм;
