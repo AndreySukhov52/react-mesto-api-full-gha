@@ -23,7 +23,7 @@ function getUserMe(req, res, next) {
     .catch(next);
 }
 
-// Получить данные пользователя по id
+/**  Получить данные пользователя по id */
 const getUserById = (req, res, next) => {
   const { userId } = req.params;
   User.findById(userId)
@@ -109,25 +109,20 @@ const login = (req, res, next) => {
     .findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
-      // const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-key', { expiresIn: '7d' });
-
-      // Рабочий код
+      /**  Рабочий код */
       res
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
           sameSite: 'none',
           secure: true,
-          // sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'Lax',
-          // secure: process.env.NODE_ENV === 'production',
         })
-        // .send({ token });
         .send(user.toJSON());
     })
     .catch(next);
 };
 
-// Экспорт модулей
+/** Экспорт модулей */
 module.exports = {
   getUsers,
   createUser,

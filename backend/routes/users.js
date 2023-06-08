@@ -8,7 +8,7 @@ const {
   validationUpdateAvatar,
 } = require('../middlewares/validation');
 
-// Роуты пользователя
+/**  Роуты пользователя */
 userRouters.get('/', getUsers);
 userRouters.get('/me', getUserMe);
 userRouters.get('/:userId', validationUserId, getUserById);

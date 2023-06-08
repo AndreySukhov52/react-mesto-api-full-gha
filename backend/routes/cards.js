@@ -13,7 +13,7 @@ const {
   validationCardId,
 } = require('../middlewares/validation');
 
-// Роуты карточек
+/**  Роуты карточек */
 cardRouters.get('/', getCards);
 cardRouters.delete('/:cardId', validationCardId, deleteCardById);
 cardRouters.post('/', validationCreateCard, createCard);

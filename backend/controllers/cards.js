@@ -28,7 +28,7 @@ const createCard = (req, res, next) => {
     });
 };
 
-// Удаление карточки
+/**  Удаление карточки */
 function deleteCardById(req, res, next) {
   const { cardId } = req.params;
   Card.findById(cardId)
@@ -52,7 +52,6 @@ const likeCard = (req, res, next) => {
   Card
     .findByIdAndUpdate(
       cardId,
-      // req.params.cardId,
       { $addToSet: { likes: _id } },
       { new: true },
     )
@@ -62,7 +61,6 @@ const likeCard = (req, res, next) => {
       if (!card) {
         return next(new NotFoundError('Карточка с указанным _id не найдена'));
       }
-      // return res.send({ card, message: 'Лайк успешно поставлен' });
       return res.status(200).json(card);
     })
     .catch((err) => {
@@ -87,7 +85,6 @@ const dislikeCard = (req, res, next) => {
       if (!card) {
         return next(new NotFoundError('Карточка с указанным _id не найдена'));
       }
-      // return res.send({ card, message: 'Лайк успешно удален' });
       return res.json(card);
     })
     .catch((err) => {
@@ -98,7 +95,7 @@ const dislikeCard = (req, res, next) => {
       }
     });
 };
-// Экспорт модулей
+/** Экспорт модулей */
 module.exports = {
   getCards,
   createCard,
