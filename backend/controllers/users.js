@@ -34,12 +34,7 @@ const getUserById = (req, res, next) => {
         throw new NotFoundError('Пользователь по указанному _id не найден');
       }
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new BadRequestError('Переданы некорректные данные при поиске пользователя'));
-      }
-      return next(err);
-    });
+    .catch(next);
 };
 
 const createUser = (req, res, next) => {
@@ -76,13 +71,7 @@ const updateUser = (req, res, next) => {
       }
       return res.status(200).send(user);
     })
-    .catch((err) => {
-      if (err.name === 'CastError' || err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 const updateAvatar = (req, res, next) => {
@@ -94,13 +83,7 @@ const updateAvatar = (req, res, next) => {
       }
       return res.status(200).send(user);
     })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при обновлении аватара'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 const login = (req, res, next) => {

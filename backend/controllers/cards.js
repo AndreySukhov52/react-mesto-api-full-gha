@@ -57,19 +57,8 @@ const likeCard = (req, res, next) => {
     )
     .populate(['owner', 'likes'])
     .orFail(() => new NotFoundError('Указанный _id не найден'))
-    .then((card) => {
-      if (!card) {
-        return next(new NotFoundError('Карточка с указанным _id не найдена'));
-      }
-      return res.status(200).json(card);
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Переданы некорректные данные для постановки лайка'));
-      } else {
-        next(err);
-      }
-    });
+    .then((card) => res.send(card))
+    .catch(next);
 };
 
 const dislikeCard = (req, res, next) => {
@@ -81,20 +70,10 @@ const dislikeCard = (req, res, next) => {
     )
     .populate(['owner', 'likes'])
     .orFail(() => new NotFoundError('Указанный _id не найден'))
-    .then((card) => {
-      if (!card) {
-        return next(new NotFoundError('Карточка с указанным _id не найдена'));
-      }
-      return res.json(card);
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Переданы некорректные данные для снятия лайка'));
-      } else {
-        next(err);
-      }
-    });
+    .then((card) => res.send(card))
+    .catch(next);
 };
+
 /** Экспорт модулей */
 module.exports = {
   getCards,
